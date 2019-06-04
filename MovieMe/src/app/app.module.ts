@@ -12,12 +12,14 @@ import { ControlMessagesComponent } from './components/control-messages/control-
 import { HttpClientModule } from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MainNavComponent,
     ControlMessagesComponent,
+    MovieDetailComponent,
   ],
   imports: [
     BrowserModule,
