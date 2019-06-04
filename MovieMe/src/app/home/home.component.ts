@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     //set the cols attribute of the mat-grid-list dynamically depending on the screen width
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
-
+    
     this.searcForm = new FormGroup({
       movieName: new FormControl('', Validators.compose([
         Validators.required,
@@ -27,18 +27,21 @@ export class HomeComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9 ]*$')]))    
     }); 
   }
-  onResize(event) {
+  onResize(event) {              // responsive width for mobiles
     this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
   }
-  async onSubmitSearch(){
-      await this.data.get_movie_search(this.searcForm.value.movieName,1)
+  async onSubmitSearch(){        // onSubmit form call data-rest service to get results
+      this.data.loading=true;
+      await this.data.get_movie_search(this.searcForm.value.movieName,1);
+      this.data.loading=false;
       // this.pageSize=this.data.search_result.results.length;
   }
 
-  changePage(event){
+  async changePage(event){              // onChange paginator (click arrows)
+    this.data.loading=true;
     this.pageEvent=event;
-    this.data.get_movie_search(this.searcForm.value.movieName,this.pageEvent.pageIndex+1)
-    
+    await this.data.get_movie_search(this.searcForm.value.movieName,this.pageEvent.pageIndex+1);
+    this.data.loading=false;
   }
 
 }

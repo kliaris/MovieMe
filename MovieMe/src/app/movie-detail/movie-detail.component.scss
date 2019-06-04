@@ -1,0 +1,23 @@
+.movie_overview{
+    display: block;
+}
+.movie_poster{
+    float: right;
+}
+
+.modal-title{
+    margin: auto;
+    font-weight: bold;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+}
+.modal-footer{
+    display: flex;
+    flex-direction: column;
+}
+.rating_div>*{
+    margin-right: 5px;
+}

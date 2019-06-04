@@ -11,6 +11,9 @@ export class ControlMessagesComponent {
    @Input() control: FormGroup;
    constructor() {}
   
+  //======================================================//
+  //=========  run and find all errors from group ========//
+  //======================================================//
   errorMessage() {
      for (let propertyName in this.control.errors) {
        if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched) {
@@ -21,6 +24,9 @@ export class ControlMessagesComponent {
      return null;
    }
 
+  //======================================================//
+  //====  return a error message by the type of this =====//
+  //======================================================//
    getValidatorErrorMessage(validatorName: string, validatorValue?: any){
     let config = {
       'required': 'Required',

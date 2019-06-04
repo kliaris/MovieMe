@@ -5,38 +5,43 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { ModalContainerComponent } from './components/modal-container/modal-container.component';
+import { MaterialModuleModule } from './material-module/material-module.module';
+import { NgxLoadingModule } from 'ngx-loading';
+import { CollectionsComponent } from './collections/collections.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MainNavComponent,
-    ControlMessagesComponent,
     MovieDetailComponent,
+    ControlMessagesComponent,   
+    ModalContainerComponent,
+    CollectionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
+    LayoutModule, 
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatGridListModule,
-    MatPaginatorModule
+    ReactiveFormsModule,  
+    NgbModule,
+    MaterialModuleModule,      // custom module for material components 
+    NgxLoadingModule
   ],
   providers: [],
+  entryComponents: [
+    MovieDetailComponent
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

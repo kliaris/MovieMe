@@ -1,3 +1,40 @@
-<p>
-  movie-detail works!
-</p>
+<div class="modal-header">
+    <h4 class="modal-title">{{this.movie?.title}}</h4>
+    
+  </div>
+  <div class="modal-body">
+    <div>
+      <img  class="movie_poster" [src]="this.movie?.poster_path" >
+      <label class="movie_overview">{{this.movie?.overview}}</label> 
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+
+      <mat-list>
+          <mat-list-item >             
+                <div>
+                  <label mat-line>Budget: {{this.movie?.budget}}</label> 
+                  <label mat-line>Release Date: {{this.movie?.release_date}}</label>
+                  <label mat-line>Revenue: {{this.movie?.revenue}}</label>
+                </div>
+          </mat-list-item>       
+      </mat-list>
+      <mat-list>
+          <mat-list-item >             
+                <div>
+                  <label mat-line>Vote average: {{this.movie?.vote_average}}/10</label> 
+                  <label mat-line>Vote count: {{this.movie?.vote_count}}</label>
+                  <label mat-line>Spoken languages: <span *ngFor="let language of this.movie?.spoken_languages">{{language?.name}} </span></label>
+                </div>
+          </mat-list-item>       
+      </mat-list>
+      <div class="rating_div">
+        <ngb-rating [(rate)]="this.user_rating"></ngb-rating>
+        <button mat-raised-button color="primary" [disabled]="this.user_rating!=0? 'false':'true'"
+                (click)="rate()">Rate</button>
+        <label *ngIf="this.user_rating!=0">Rate: <b>{{this.user_rating}}</b></label>
+      </div>
+    </div>
+  </div>
+  

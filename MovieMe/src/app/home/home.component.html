@@ -1,3 +1,4 @@
+<!-------------------- searchbar form  -------------------->
 <div class="search-container">
   <form [formGroup]="searcForm" (ngSubmit)="onSubmitSearch()">
 
@@ -5,13 +6,15 @@
       Movie:
       <input type="text" formControlName="movieName">    
     </label>
-    <button type="submit" [disabled]="!searcForm.valid">Submit</button>
+    <button mat-raised-button color="primary" class="searchButton" type="submit" [disabled]="!searcForm.valid">Search</button>
   </form>
 </div>
+<!-------------------- form validators ------------------->
 <app-control-messages class="validatorsErrors" [control]="searcForm.controls.movieName" class="text-danger"></app-control-messages>
 
+<!-------------------- list of movies -------------------->
 <mat-list>
-    <mat-list-item *ngFor="let movie of this.data.search_result.results">
+    <mat-list-item *ngFor="let movie of this.data.search_result.results" [routerLink]="['movieDetail',movie.id]">
           <img  class="poster" [src]="movie.poster_path" >
           <div>
             <label mat-line>{{movie.title}}</label> 
@@ -21,11 +24,12 @@
     
 </mat-list>
 
-
+<!-------------------- Paginator -------------------->
 <mat-paginator *ngIf="this.data.search_result.total_results!=undefined"
               [length]="this.data.search_result.total_results"
               [pageSize]="this.data.search_result.results.length"
               (page)="changePage($event)">
 </mat-paginator>
 
+<ngx-loading [show]="this.data.loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
 
