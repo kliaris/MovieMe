@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { DataRestAssistantService } from '../services/data-rest-assistant.service';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  breakpoint:any;
+  searcForm:any;
 
-  constructor() { }
+  // MatPaginator Output
+  pageEvent: PageEvent;
+  constructor(private data:DataRestAssistantService) { }
 
   ngOnInit() {
+    //set the cols attribute of the mat-grid-list dynamically depending on the screen width
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
+
+    this.searcForm = new FormGroup({
+      movieName: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z0-9 ]*$')]))    
+    }); 
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
+  }
+  async onSubmitSearch(){
+      await this.data.get_movie_search(this.searcForm.value.movieName,1)
+      // this.pageSize=this.data.search_result.results.length;
+  }
+
+  changePage(event){
+    this.pageEvent=event;
+    this.data.get_movie_search(this.searcForm.value.movieName,this.pageEvent.pageIndex+1)
+    
   }
 
 }
