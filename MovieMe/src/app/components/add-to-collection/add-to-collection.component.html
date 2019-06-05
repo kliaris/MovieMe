@@ -1,0 +1,12 @@
+<h4>Select your collection</h4>
+<mat-form-field>
+  <mat-select placeholder="Please select" (selectionChange)="selected($event)">
+    <mat-option *ngFor="let collection of data" [value]="collection">
+      {{collection}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="this.selected_collection" cdkFocusInitial>Ok</button>
+</div>

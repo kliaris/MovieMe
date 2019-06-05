@@ -1,0 +1,17 @@
+<div class="row">
+    <h2 class="collectionTitle"><b>{{this.title}} Collection</b></h2>
+</div>
+
+<!-------------------- list of movies -------------------->
+<mat-list *ngIf="this.collection[0].movies!=undefined">
+    <mat-list-item *ngFor="let movie of this.collection[0]?.movies; let i=index">
+         <button mat-raised-button color="danger"  (click)="deleteFromCollection(movie?.title,i)">Delete</button> 
+          <div class="contentRow" >
+            <img  class="poster" [src]="movie.poster_path" >
+            <div>
+              <label mat-line>{{movie.title}}</label> 
+              <label mat-line>Vote: {{movie.vote_average}}/10</label>
+            </div>
+          </div>
+    </mat-list-item>  
+</mat-list>

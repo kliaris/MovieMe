@@ -14,11 +14,14 @@
 
 <!-------------------- list of movies -------------------->
 <mat-list>
-    <mat-list-item *ngFor="let movie of this.data.search_result.results" [routerLink]="['movieDetail',movie.id]">
-          <img  class="poster" [src]="movie.poster_path" >
-          <div>
-            <label mat-line>{{movie.title}}</label> 
-            <label mat-line>Vote: {{movie.vote_average}}/10</label>
+    <mat-list-item *ngFor="let movie of this.data.search_result.results">
+          <button mat-raised-button color="danger"  class="addButton" (click)="addToCollection(movie)">ADD</button> 
+          <div class="contentRow" [routerLink]="['movieDetail',movie.id]">
+            <img  class="poster" [src]="movie.poster_path" >
+            <div>
+              <label mat-line>{{movie.title}}</label> 
+              <label mat-line>Vote: {{movie.vote_average}}/10</label>
+            </div>
           </div>
     </mat-list-item>
     

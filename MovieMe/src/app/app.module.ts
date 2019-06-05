@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +17,13 @@ import { ModalContainerComponent } from './components/modal-container/modal-cont
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { CollectionsComponent } from './collections/collections.component';
+import { NewCollectionDialogComponent } from './components/new-collection-dialog/new-collection-dialog.component';
+import { MatDialogModule } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import { AddToCollectionComponent } from './components/add-to-collection/add-to-collection.component';
+import { ViewCollectionComponent } from './collections/view-collection/view-collection.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,22 +32,28 @@ import { CollectionsComponent } from './collections/collections.component';
     MovieDetailComponent,
     ControlMessagesComponent,   
     ModalContainerComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    NewCollectionDialogComponent,
+    AddToCollectionComponent,
+    ViewCollectionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     LayoutModule, 
     BrowserAnimationsModule,
     ReactiveFormsModule,  
     NgbModule,
     MaterialModuleModule,      // custom module for material components 
-    NgxLoadingModule
+    NgxLoadingModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   entryComponents: [
-    MovieDetailComponent
+    MovieDetailComponent,NewCollectionDialogComponent,AddToCollectionComponent
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

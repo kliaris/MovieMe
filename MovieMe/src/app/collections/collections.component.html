@@ -1,3 +1,17 @@
-<p>
-  collections works!
-</p>
+<div class="row createButton">
+      <button mat-raised-button color="primary" (click)="openToCreateNewCollection()">Create new collection</button>
+      <!-- <a [routerLink]="['new-collection']">Create new collection</a> -->
+</div>
+
+<!-------------------- list of colections -------------------->
+<mat-list>
+    <mat-list-item *ngFor="let collection of this.storageAssistant.myCollections; let i = index" class="collectionRow">        
+          <button mat-raised-button color="danger" (click)="this.storageAssistant.deleteCollection(i)" class="delButton">Delete</button>
+          <button mat-raised-button color="primary" [routerLink]="[ '/view-collection', collection.title ]" class="delButton">View</button>
+          <div >
+            <label mat-line><b>Title: {{collection.title}}</b></label> 
+            <label mat-line>Description: {{collection.description}}</label>
+          </div>
+    </mat-list-item>
+     
+</mat-list>
